@@ -1,0 +1,91 @@
+* Terminal
+** Auto set termianl shell
+The terminal is accessed through a program ansi-term.
+This stops the terminal from requesting which shell to use. 
+   #+begin_src emacs-lisp 
+     (defvar term-shell "/bin/bash")
+     (defadvice ansi-term (before force-bash)
+       (interactive (list term-shell)))
+     (ad-activate 'ansi-term)
+   #+end_src
+** Set Terminal Hotkey
+   #+begin_src emacs-lisp
+     (global-set-key (kbd "<s-return>") 'ansi-term)
+   #+end_src
+* which-key
+** Package Installation
+Provides completion options when a given combination is entered such as C-c.
+   #+begin_src emacs-lisp
+     (use-package which-key
+       :ensure t
+       :init
+       (which-key-mode))
+   #+end_src
+* Theme
+Replace colorthemes git repo is required in the emacs.d directory.
+Must move the desired theme .el file into .emacs.d/ for emacs to find
+  #+begin_src emacs-lisp
+    (load-theme 'deep-blue t t)
+    (enable-theme 'deep-blue)
+  #+end_src
+* General Emacs
+** Random
+   #+begin_src emacs-lisp
+     (scroll-bar-mode -1)
+     (tool-bar-mode -1)
+     (menu-bar-mode -1)
+   #+end_src
+** Set Keybinding
+iBuffer is an alternative buffer manager to the emacs buffer.
+   #+begin_src emacs-lisp
+     ;;(global-hl-line-mode t)
+     (global-set-key (kbd "C-x C-b") 'ibuffer)
+   #+end_src
+** Screen Splitting
+These functions make the cursor follow to the newly created screen on a screen split.
+   #+begin_src emacs-lisp
+     (defun split-down ()
+       (interactive)
+       (split-window-below)
+       (balance-windows)
+       (other-window 1))
+
+     (global-set-key (kbd "C-x 2") 'split-down)
+
+     (defun split-right ()
+       (interactive)
+       (split-window-right)
+       (balance-windows)
+       (other-window 1))
+
+     (global-set-key (kbd "C-x 3") 'split-right)
+   #+end_src
+* Ido
+Ido provides file completion options in switch buffer when opening a file/buffer.
+** General Settings
+   #+begin_src emacs-lisp
+     (setq ido-enable-flex-matching nil)
+     (setq ido-create-new-buffer 'always)
+     (setq ido-everywhere t)
+     (ido-mode 1)
+   #+end_src
+** Ido-Vertical Installation
+   #+begin_src emacs-lisp
+     (use-package ido-vertical-mode
+       :ensure t
+       :init
+       (ido-vertical-mode 1))
+   #+end_src
+** Ido-Vertical Settings
+   #+begin_src emacs-lisp
+     (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+   #+end_src
+* avy
+avy is a key searching program for moving around the buffer.
+** Installation
+   #+begin_src emacs-lisp
+     (use-package avy
+       :ensure t
+       :bind
+       ("M-s" . avy-goto-char))
+   #+end_src
