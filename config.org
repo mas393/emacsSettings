@@ -25,8 +25,8 @@ Provides completion options when a given combination is entered such as C-c.
 Replace colorthemes git repo is required in the emacs.d directory.
 Must move the desired theme .el file into .emacs.d/ for emacs to find
   #+begin_src emacs-lisp
-    (load-theme 'deep-blue t t)
-    (enable-theme 'deep-blue)
+	(load-theme 'gray30 t t)
+	(enable-theme 'gray30)
   #+end_src
 * General Emacs
 ** Random
@@ -34,6 +34,17 @@ Must move the desired theme .el file into .emacs.d/ for emacs to find
      (scroll-bar-mode -1)
      (tool-bar-mode -1)
      (menu-bar-mode -1)
+     (setq-default display-line-numbers 'relative)
+     (display-line-numbers-mode 1)
+
+   #+end_src
+** Auto Complete Brackets
+   #+begin_src emacs-lisp
+     (setq electric-pair-pairs '(
+				 (?\( . ?\))
+				 (?\[ . ?\])
+				 ))
+     (electric-pair-mode t)
    #+end_src
 ** Set Keybinding
 iBuffer is an alternative buffer manager to the emacs buffer.
@@ -59,7 +70,8 @@ These functions make the cursor follow to the newly created screen on a screen s
        (other-window 1))
 
      (global-set-key (kbd "C-x 3") 'split-right)
-   #+end_src
+   #+end_src   
+   
 * Ido
 Ido provides file completion options in switch buffer when opening a file/buffer.
 ** General Settings
@@ -89,3 +101,18 @@ avy is a key searching program for moving around the buffer.
        :bind
        ("M-s" . avy-goto-char))
    #+end_src
+* dmenu
+  #+begin_src emacs-lisp
+  (use-package dmenu
+    :ensure t
+    :bind
+    ("M-q" . 'dmenu))
+  #+end_src
+  
+* multiple-cursors
+  #+begin_src emacs-lisp
+  (use-package multiple-cursors
+     :ensure t
+     :bind
+     ("C-s-c C-s-c" . 'mc/edit-lines))
+  #+end_src
