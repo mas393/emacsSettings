@@ -1,5 +1,5 @@
 * Terminal
-** Auto set termianl shell
+ ** Auto set termianl shell
 The terminal is accessed through a program ansi-term.
 This stops the terminal from requesting which shell to use. 
    #+begin_src emacs-lisp 
@@ -36,7 +36,7 @@ Must move the desired theme .el file into .emacs.d/ for emacs to find
      (menu-bar-mode -1)
      (setq-default display-line-numbers 'relative)
      (display-line-numbers-mode 1)
-
+     (setq-default c-basic-offset 4)
    #+end_src
 ** Auto Complete Brackets
    #+begin_src emacs-lisp
@@ -71,7 +71,6 @@ These functions make the cursor follow to the newly created screen on a screen s
 
      (global-set-key (kbd "C-x 3") 'split-right)
    #+end_src   
-   
 * Ido
 Ido provides file completion options in switch buffer when opening a file/buffer.
 ** General Settings
@@ -116,3 +115,53 @@ avy is a key searching program for moving around the buffer.
      :bind
      ("C-s-c C-s-c" . 'mc/edit-lines))
   #+end_src
+  
+* org mode
+** general
+#+begin_src emacs-lisp
+(setq org-startup-with-inline-images t)
+(setq org-babel-min-lines-for-block-output 0)
+(setq org-src-preserve-indentation t)
+#+end_src
+** org-journal
+   #+begin_src emacs-lisp
+   (use-package org-journal
+     :ensure t)
+   #+end_src
+   
+* LaTeX
+** latex-preview-pane
+   #+begin_src emacs-lisp
+   (use-package latex-preview-pane
+     :ensure t)
+   (latex-preview-pane-enable)
+   #+end_src>
+* Origami
+Bracket folding  
+** Installation
+   #+begin_src emacs-lisp
+   (use-package origami
+     :ensure t)
+   #+end_src>
+* Company
+Text completion  
+** Installation
+   #+begin_src emacs-lisp
+   (use-package company
+     :ensure t)
+   
+   #+end_src>
+* Flycheck
+Syntax checking  
+** Installation
+   #+begin_src emacs-lisp
+   (use-package flycheck
+     :ensure t)
+   #+end_src>
+* Rainbow Delimiters
+** Installation
+   #+begin_src emacs-lisp
+   (use-package rainbow-delimiters
+     :ensure t)
+     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+   #+end_src>
