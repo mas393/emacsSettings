@@ -21,13 +21,6 @@ Provides completion options when a given combination is entered such as C-c.
        :init
        (which-key-mode))
    #+end_src
-* Theme
-Replace colorthemes git repo is required in the emacs.d directory.
-Must move the desired theme .el file into .emacs.d/ for emacs to find
-  #+begin_src emacs-lisp
-	(load-theme 'gray30 t t)
-	(enable-theme 'gray30)
-  #+end_src
 * General Emacs
 ** Random
    #+begin_src emacs-lisp
